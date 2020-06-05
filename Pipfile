@@ -7,6 +7,9 @@ verify_ssl = true
 
 [packages]
 kivy = "*"
+cc7bc0c = {file = "https://github.com/kivy/kivy/archive/stable.zip"}
+ffpyplayer = "*"
+pygame = "*"
 
 [requires]
 python_version = "3.7"

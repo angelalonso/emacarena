@@ -1,6 +1,7 @@
 import kivy
 kivy.require('1.7.2')
 from kivy.app import App
+from kivy.core.audio import SoundLoader
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.uix.anchorlayout import AnchorLayout
@@ -44,14 +45,25 @@ class MainGrid(AnchorLayout):
         self.submit = Button(text="eMac Arena", font_size=40, size_hint = (0.3, 0.3))
         self.submit.bind(on_press=self.pressed)
         self.add_widget(self.submit)
+        #self.sound = SoundLoader.load('sounds/eMacArena.wav')
+        #self.sound.seek(0)
 
 
     def pressed(self, instance):
         print("Aaaaargh!!")
-        pops=SimplePopup()
-        pops.open()
+        #self.play_audio()
+        self.sound = SoundLoader.load('sounds/eMacArena.wav')
+        if self.sound:
+            print("Sound found at %s" % self.sound.source)
+            print("Sound is %.3f seconds" % self.sound.length)
+            self.sound.play()
 
 
+    def play_audio(self):
+        if self.sound:
+            print("Sound found at %s" % self.sound.source)
+            print("Sound is %.3f seconds" % self.sound.length)
+            self.sound.play()
 
 class MyApp(App):
     def build(self):
